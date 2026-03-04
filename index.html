@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Happy Anniversary Mummy Papa ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family:'Segoe UI',Arial;
+    background:#ffe6e6;
+    text-align:center;
+    overflow:hidden;
+}
+
+#content{padding:40px;}
+
+h1{color:red;font-size:38px;}
+p{font-size:22px;color:#333;}
+
+button{
+    padding:15px 35px;
+    font-size:20px;
+    background:red;
+    color:white;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+button:hover{background:darkred;}
+
+video{
+    display:none;
+    width:90%;
+    max-width:700px;
+    margin:30px auto;
+    border-radius:20px;
+    box-shadow:0 0 25px rgba(255,0,0,.4);
+}
+
+.popup{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    display:none;
+    z-index:1000;
+    box-shadow:0 0 25px pink;
+}
+
+/* Hearts */
+.heart{
+    position:fixed;
+    font-size:30px;
+    animation:float 5s linear infinite;
+}
+
+@keyframes float{
+    0%{transform:translateY(100vh);}
+    100%{transform:translateY(-10vh);}
+}
+
+/* Ring Animation */
+#ring{
+    font-size:80px;
+    animation:ringPop 1.5s ease infinite;
+}
+
+@keyframes ringPop{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.4);}
+    100%{transform:scale(1);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- Background Music -->
+<audio id="bgMusic" autoplay loop>
+    <source src="music.mp3" type="audio/mp3">
+</audio>
+
+<div id="content">
+<h1>❤️ Happy Anniversary Mummy Papa ❤️</h1>
+
+<p>
+Mummy Papa 🥹💖<br><br>
+Aap dono hamesha saath rahein 🤍🫂<br>
+Aise hi haste-muskurate rahen 😄✨<br><br>
+Aapka pyaar hi hamari duniya hai 🌍💕<br>
+Happy Wedding Anniversary 💐💫
+</p>
+
+<button id="surpriseBtn" onclick="showVideo()">🎁 Anniversary Surprise</button>
+
+<video id="loveVideo" controls onplay="stopMusic()" onended="videoEnded()">
+    <source src="love.mp4" type="video/mp4">
+</video>
+</div>
+
+<!-- Love Question -->
+<div class="popup" id="lovePopup">
+<h2>Aap dono ka pyaar hamesha aisa hi rahe 🥺❤️</h2>
+<button onclick="yesLove()">Forever Together 💖</button>
+<button id="noBtn" onmouseover="runAway()">Kabhi Alag? 😜</button>
+</div>
+
+<!-- Final Message -->
+<div class="popup" id="finalPopup">
+<h1>💘 Best Parents in the World 💘</h1>
+<div id="ring">💍</div>
+<h2>Stay blessed and happy forever 🥹❤️</h2>
+</div>
+
+<script>
+let music=document.getElementById("bgMusic");
+let video=document.getElementById("loveVideo");
+
+function showVideo(){
+    document.getElementById("surpriseBtn").style.display="none";
+    video.style.display="block";
+    video.scrollIntoView({behavior:"smooth"});
+    video.play();
+}
+
+function stopMusic(){ music.pause(); }
+
+function videoEnded(){
+    music.play();
+    document.getElementById("lovePopup").style.display="block";
+}
+
+function yesLove(){
+    document.getElementById("lovePopup").style.display="none";
+    document.getElementById("finalPopup").style.display="block";
+    party();
+}
+
+function runAway(){
+    let btn=document.getElementById("noBtn");
+    btn.style.position="absolute";
+    btn.style.left=Math.random()*80+"vw";
+    btn.style.top=Math.random()*80+"vh";
+}
+
+function party(){
+    for(let i=0;i<120;i++){
+        let h=document.createElement("div");
+        h.className="heart";
+        h.innerHTML=Math.random()>0.5?"💖":"🎉";
+        h.style.left=Math.random()*100+"vw";
+        h.style.animationDuration=(Math.random()*3+2)+"s";
+        document.body.appendChild(h);
+    }
+}
+</script>
+
+</body>
+</html>
